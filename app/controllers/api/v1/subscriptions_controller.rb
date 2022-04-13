@@ -1,4 +1,4 @@
-class SubscriptionsCoonroller < ApplicationController
+class SubscriptionsController < ApplicationController
 
   def index
   end
