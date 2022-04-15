@@ -7,7 +7,7 @@ describe "Subscriptions API" do
     tea2 = Tea.create!(title: "Black Tea", description: "Black Tea", temperature: "150", brew_time: "7 minutes")
     tea3 = Tea.create!(title: "White Tea", description: "White Tea", temperature: "200", brew_time: "2 minutes")
     subscription1 = user.subscriptions.create!(title: "my first subscription", price: "55", status: "Active", frequency: "Weekly", teas: [tea1, tea2])
-    subscription1 = user.subscriptions.create!(title: "my cancelled subscription", price: "75", status: "Cancelled", frequency: "Weekly", teas: [tea2, tea3])
+    subscription2 = user.subscriptions.create!(title: "my cancelled subscription", price: "75", status: "Cancelled", frequency: "Weekly", teas: [tea2, tea3])
 
     params = {"id": "#{user.id}"}
     get '/api/v1/subscriptions', params: params
@@ -41,7 +41,7 @@ describe "Subscriptions API" do
     expect(response).to be_successful
   end
 
-  it "can destroy an item" do
+  it "can destroy a users's subscription" do
     user = User.create!(first_name: "Kelly", last_name: "Anderson", address: "1234 Laurel St", email: "kelly@gmail.com")
     tea1 = Tea.create!(title: "Green Tea", description: "Green Tea", temperature: "100", brew_time: "4 minutes")
     tea2 = Tea.create!(title: "Black Tea", description: "Black Tea", temperature: "150", brew_time: "7 minutes")
