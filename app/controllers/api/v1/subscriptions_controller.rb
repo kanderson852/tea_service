@@ -6,12 +6,11 @@ class Api::V1::SubscriptionsController < ApplicationController
   end
 
   def create
-    # require "pry"; binding.pry
-    customer = User.find(params[:subscription][:user_id])
-    subscription = customer.subscriptions.create(title: params[:subscription][:title], price: params[:subscription][:price], frequency: params[:subscription][:frequency], teas: params[:subscription][:teas])
-    if subscription.save
-      render json: SubscriptionSerializer.new(subscription), status: 201
-    end
+    customer = User.find_by(id: params[:user_id])
+    tea = Tea.find_by(id: params[:tea_id])
+    subscription = Subscription.create!(subscription_params)
+
+    render json: SubscriptionSerializer.new(subscription), status: 201
   end
 
   def destroy
@@ -23,8 +22,8 @@ class Api::V1::SubscriptionsController < ApplicationController
     end
   end
 
-  # private
-  #   def subscription_params
-  #     params.require(:subscription).permit(:title, :price, :status, :frequency, :teas, :user_id)
-  #   end
+private
+  def subscription_params
+    params.permit( :title, :price, :status, :frequency, :user_id, :teas)
+  end
 end
