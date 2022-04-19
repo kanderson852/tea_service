@@ -1,6 +1,13 @@
 # README
 
 # Tea Service
+The Tea Service API provides endpoints for implementing a tea subscription service to users. The schema shows the data tables and their relationships:
+
+<img width="606" alt="Screen Shot 2022-04-19 at 8 43 57 AM" src="https://user-images.githubusercontent.com/89998621/164031970-4dd82b3b-61c2-438f-a4d9-d2a81955f4a4.png">
+
+
+
+
 This app is a mock take-home challenge for interview practice. The goal is to expose 3 API endpoints: 
 
 - An endpoint to subscribe a customer to a tea subscription
