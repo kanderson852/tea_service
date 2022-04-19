@@ -36,14 +36,12 @@ describe "Subscriptions API" do
     headers = {"CONTENT_TYPE" => "application/json"}
     post "/api/v1/subscriptions", headers: headers, params: JSON.generate(subscription_params)
     subscriptions = JSON.parse(response.body, symbolize_names: true)
-    require "pry"; binding.pry
     expect(response).to be_successful
     expect(subscriptions).to have_key(:data)
     expect(subscriptions[:data]).to be_a(Hash)
     expect(subscriptions[:data]).to have_key(:attributes)
     expect(subscriptions[:data][:attributes][:title]).to eq("my first subscription")
     expect(subscriptions[:data][:attributes][:teas]).to be_a(Array)
-    expect(subscriptions[:data][0][:attributes][:teas][0][:title]).to eq("Green Tea")
   end
 
   it "can destroy a users's subscription" do
